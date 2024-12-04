@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
 
-        <Canvas x:Name="Canvas" HorizontalAlignment="Center" Height="434" VerticalAlignment="Center" Width="800" Cursor="Pen" MouseMove="canvaMouseMove" MouseDown="canvaMouseDown" MouseUp="canvasMouseUp"/>
+        
 
         <ToolBar Height="Auto" Width="800" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="6">
             <Button x:Name="ClearButton" Content="Clear" Canvas.Left="18" Height="25" Click="Button_Click" Canvas.Top="0" Width="50"/>
@@ -29,11 +29,16 @@
                 <ComboBoxItem Content="Blue"/>
             </ComboBox>
             <Label Content="Draw Style:" Canvas.Left="58" HorizontalAlignment="Center" Height="Auto" VerticalAlignment="Top" Width="84" Canvas.Top="0"/>
-            <ComboBox Width="142" SelectionChanged="ComboBox_SelectionChanged_1">
+            <ComboBox x:Name="DrawStyle" Width="142" SelectionChanged="ComboBox_SelectionChanged_2">
                 <ComboBoxItem Content="Lines"/>
                 <ComboBoxItem Content="Free Draw"/>
             </ComboBox>
         </ToolBar>
+        <Canvas x:Name="Canvas" HorizontalAlignment="Center" Height="362" VerticalAlignment="Center" Width="800" Cursor="Arrow" MouseMove="canvaMouseMove" MouseDown="canvaMouseDown" MouseUp="canvasMouseUp">
+            <Canvas.Background>
+                <SolidColorBrush Color="Red" Opacity="0"/>
+            </Canvas.Background>
+        </Canvas>
 
     </Grid>
 </Window>

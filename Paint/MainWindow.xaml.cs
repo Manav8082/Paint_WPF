@@ -13,8 +13,10 @@ namespace Paint
     public partial class MainWindow : Window
     {
         private bool isDrawing = false;
+        private Point previousPoint = new Point();
         private SolidColorBrush currentBrush = new SolidColorBrush(Colors.Black);
         private int currentBrushSize=5;
+        private string currentDrawStyle = "Free Draw";
         public MainWindow()
         {
             InitializeComponent();
@@ -26,32 +28,30 @@ namespace Paint
 
         }
 
-       
         private void canvaMouseMove(object sender, MouseEventArgs e)
         {
-            if(isDrawing)
+            if (isDrawing)
             {
-                Point position = e.GetPosition(Canvas);
-                Ellipse point = new Ellipse
+                Line line = new Line
                 {
-                    Width = currentBrushSize,
-                    Height = currentBrushSize,
-                    Fill = currentBrush,
+                    X1 = previousPoint.X,
+                    Y1 = previousPoint.Y,
+                    X2 = e.GetPosition(Canvas).X,
+                    Y2 = e.GetPosition(Canvas).Y,
+                    Stroke = currentBrush,
+                    StrokeThickness = currentBrushSize
                 };
-
-                Canvas.SetLeft(point, position.X-(currentBrushSize/2));
-                Canvas.SetTop(point, position.Y - (currentBrushSize / 2));
-
-                Canvas.Children.Add(point);
-
+                Canvas.Children.Add(line);
+                previousPoint=e.GetPosition(Canvas);
             }
         }
         private void canvaMouseDown(object sender, MouseButtonEventArgs e)
         {
             if(e.ChangedButton == MouseButton.Left)
             {
-
+                
                 isDrawing = true;
+                previousPoint=e.GetPosition(Canvas);
             }
         }
         private void canvasMouseUp(object sender, MouseButtonEventArgs e)
@@ -81,7 +81,12 @@ namespace Paint
                 currentBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(selectedItem.Content.ToString()));
             }
         }
-
-        
+        private void ComboBox_SelectionChanged_2(object sender, SelectionChangedEventArgs e)
+        {
+            if (DrawStyle.SelectedItem is ComboBoxItem selectedItem)
+            {
+                currentDrawStyle = selectedItem.Content.ToString();
+            }
+        }
     }
 }
