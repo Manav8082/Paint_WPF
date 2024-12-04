@@ -7,10 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
-        
-
-        <ToolBar Height="Auto" Width="800" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="6">
+        <ToolBar Height="Auto" Width="800" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="1">
             <Button x:Name="ClearButton" Content="Clear" Canvas.Left="18" Height="25" Click="Button_Click" Canvas.Top="0" Width="50"/>
             <Label Content="Brush Size:" Canvas.Left="58" HorizontalAlignment="Center" Height="Auto" VerticalAlignment="Top" Width="84" Canvas.Top="0"/>
             <ComboBox x:Name="BrushSize" Width="50" SelectionChanged="ComboBox_SelectionChanged">
@@ -34,7 +31,7 @@
                 <ComboBoxItem Content="Free Draw"/>
             </ComboBox>
         </ToolBar>
-        <Canvas x:Name="Canvas" HorizontalAlignment="Center" Height="362" VerticalAlignment="Center" Width="800" Cursor="Arrow" MouseMove="canvaMouseMove" MouseDown="canvaMouseDown" MouseUp="canvasMouseUp">
+        <Canvas x:Name="Canvas" HorizontalAlignment="Center" Height="362" VerticalAlignment="Center" Width="800" Cursor="Arrow" MouseMove="canvaMouseMove" MouseDown="canvaMouseDown" MouseUp="canvasMouseUp" Grid.Column="1">
             <Canvas.Background>
                 <SolidColorBrush Color="Red" Opacity="0"/>
             </Canvas.Background>
